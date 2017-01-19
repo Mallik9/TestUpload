@@ -88,8 +88,8 @@ public class TestUpload {
 				if (CollectionUtils.isNotEmpty(cTDataList)) {
 					for (CTData cTData : cTDataList) {
 						System.out.println(cTData.getFileName() + "   -   " + cTData.getWell() + "   -   "
-								+ cTData.getGeneName() + "   -   " + cTData.getGeneType() + "   -   " + cTData.getCt()
-								+ "   -   " + cTData.getAdjustedCt());
+								+ cTData.getGeneName() + "   -   " + cTData.getGeneType() + "   -   "
+								+ cTData.getSample() + "   -   " + cTData.getCt() + "   -   " + cTData.getAdjustedCt());
 					}
 				}
 				System.out.println("******************* CT Data List Ends here*********************");
@@ -411,10 +411,12 @@ public class TestUpload {
 	private static List<CTData> populatFifthSheetColumns(final Row headRow, final Row row) throws Exception {
 		final List<CTData> cTDataList = new ArrayList<>();
 		final DataFormatter formatter = new DataFormatter();
-		final String fileName = row.getCell(0).getRichStringCellValue().toString();
+		final String filePath = row.getCell(0).getRichStringCellValue().toString();
+		final String fileName = filePath.substring(filePath.lastIndexOf("\\") + 1);
 		final String well = formatter.formatCellValue(row.getCell(1));
 		final String geneName = row.getCell(2).getRichStringCellValue().toString();
 		final String geneType = row.getCell(3).getRichStringCellValue().toString();
+		final String sample = row.getCell(4).getRichStringCellValue().toString();
 		final String ct = formatter.formatCellValue(row.getCell(6));
 		final double adjustedCt = row.getCell(7).getNumericCellValue();
 		final CTData ctd = new CTData();
@@ -422,6 +424,7 @@ public class TestUpload {
 		ctd.setWell(well);
 		ctd.setGeneName(geneName);
 		ctd.setGeneType(geneType);
+		ctd.setSample(sample);
 		ctd.setCt(ct);
 		ctd.setAdjustedCt(adjustedCt);
 		cTDataList.add(ctd);
