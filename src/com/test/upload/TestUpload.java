@@ -21,7 +21,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class TestUpload {
 
-	private static final String excelFilePath = "D:\\Users\\703176219\\Desktop\\DACOGEN_09DEC2016.xls";
+	private static final String excelFilePath = "D:\\Users\\mallik\\Desktop\\DACOGEN_09DEC2016.xls";
 	private static final int fistSheetSkipRows = 10;
 	private static final int secondSheetSkipRows = 10;
 	private static final int thirdSheetSkipRows = 10;
